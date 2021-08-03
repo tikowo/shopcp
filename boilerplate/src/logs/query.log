@@ -1,0 +1,7 @@
+select `items`.* from `items` where `items`.`id` = '20004' : 7ms
+select `item_categories`.* from `item_categories` where `item_categories`.`id` in ('4') : 4ms
+select `item_attributes`.* from `item_attributes` where `item_attributes`.`item_id` in ('20004') : 7ms
+select `attributes`.*, `attributes_categories`.`category_id` as `objectiontmpjoin0` from `attributes` inner join `attributes_categories` on `attributes`.`id` = `attributes_categories`.`attribute_id` where `attributes_categories`.`category_id` in ('4') : 4ms
+select `options`.* from `options` where `options`.`id` in ('4', '3') : 2ms
+select `options`.*, `options_attributes`.`attribute_id` as `objectiontmpjoin0` from `options` inner join `options_attributes` on `options`.`id` = `options_attributes`.`option_id` where `options_attributes`.`attribute_id` in ('4', '5', '6', '7') : 3ms
+select `options`.*, `options_attributes`.`attribute_id` as `objectiontmpjoin0` from `options` inner join `options_attributes` on `options`.`id` = `options_attributes`.`option_id` where `options_attributes`.`attribute_id` in ('4', '5', '6', '7') : 5ms
