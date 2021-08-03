@@ -27,6 +27,11 @@ class Item extends BaseModel {
             if (!attr.attribute) return;
             if (attr.option) {
                 attr.value = attr.option.value;
+
+                if (attr.attribute.max_length > 1) {
+                    Array.isArray(obj[attr.attribute.name]) ? obj[attr.attribute.name].push(attr.value) : obj[attr.attribute.name] = [attr.value];
+                    return;
+                }
             }
             obj[attr.attribute.name] = attr.value;
         });

@@ -11,13 +11,16 @@ const router = express.Router();
 router.use(auth);
 
 router.get('/categories', TestController.getCategories);
+router.get('/categories/all', TestController.getAllCategories);
 router.get('/categories/:id', TestController.getCategory);
 
-router.get('/attributes', TestController.getAttributes)
-// router.get('/categories/:id', TestController.getCategoryItems);
+router.post('/categories', TestController.saveCategory);
+router.get('/attributes', TestController.getAttributes);
+
+router.get('/categories/:id/items', TestController.getCategoryItems);
 
 router.get('/test', TestController.index);
-router.get('/test/:id', TestController.findById)
+router.get('/test/:id', TestController.findById);
 router.post('/test/:id', TestController.saveAttributes);
 
 router.post('/item', TestController.saveItem);

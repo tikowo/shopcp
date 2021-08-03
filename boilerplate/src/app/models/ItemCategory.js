@@ -10,9 +10,10 @@ class ItemCategory extends BaseModel {
 
             properties: {
                 id: { type: 'integer' },
-                name: { type: 'integer', minLength: 1, maxLength: 255 },
-                key: { type: 'integer', minLength: 1, maxLength: 255 },
-                slug: { type: 'integer', minLength: 1, maxLength: 255 }
+                name: { type: 'string', minLength: 1, maxLength: 255 },
+                key: { type: 'string', minLength: 1, maxLength: 255 },
+                slug: { type: 'string', minLength: 1, maxLength: 255 },
+                parent_id: { type: 'integer' }
             }
         };
     }

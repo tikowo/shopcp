@@ -18,15 +18,32 @@ const getValidators = async () => {
         category.attributes.forEach(attr => {
             let item;
             if (attr.value_type === 'enum') {
-                item = {
-                    type: "object",
-                    properties: {
-                        option_id: {
-                            enum: attr.options.map(opt => opt.id)
+                if (attr.max_length > 1) {
+                    item = {
+                        type: "object",
+                        properties: {
+                            option_id: {
+                                type: "array",
+                                uniqueItems: true,
+                                maxItems: attr.max_length,
+                                items: {
+                                    enum: attr.options.map(opt => opt.id)
+                                }
+                            }
                         }
-                    },
-                    additionalProperties: false
+                    }
+                } else {
+                    item = {
+                        type: "object",
+                        properties: {
+                            option_id: {
+                                enum: attr.options.map(opt => opt.id)
+                            }
+                        },
+                        additionalProperties: false
+                    }
                 }
+
             } else {
                 item = {
                     type: "object",

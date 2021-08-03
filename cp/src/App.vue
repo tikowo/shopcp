@@ -53,6 +53,7 @@ export default {
     };
   },
   async mounted() {
+    return;
     const response = await fetch("http://localhost:3000/categories");
     const data = await response.json();
     this.categories = data;

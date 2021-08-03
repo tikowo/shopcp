@@ -1,5 +1,6 @@
 <template>
     <recursive-categories v-if="categories" :categories="categories"/>
+    <router-link :to="{name: 'categoriescreate'}">New category</router-link>
 </template>
 
 <script>

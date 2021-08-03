@@ -6,11 +6,12 @@ const store = createStore({
             categories: null,
             category: null,
             attributes: null,
+            categoryItems: null
         }
     },
     actions: {
-        async getCategories({ commit }) {
-            const data = await fetch('http://localhost:3000/categories');
+        async getCategories({ commit }, all) {
+            const data = await fetch(`http://localhost:3000/categories/${all ? 'all' : ''}`);
             const categories = await data.json();
             commit('setCategories', categories);
         },
@@ -24,6 +25,22 @@ const store = createStore({
             const response = await fetch(`http://localhost:3000/attributes`);
             const data = await response.json();
             commit('setAttributes', data);
+        },
+        async getCategoryItems({ commit }, id) {
+            const response = await fetch(`http://localhost:3000/categories/${id}/items`);
+            const data = await response.json();
+            commit('setCategoryItems', data);
+        },
+        async saveCategory({ commit }, category) {
+            const response = await fetch("http://localhost:3000/categories", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(category)
+            });
+            const data = await response.json();
+            console.log(data);
         }
     },
     mutations: {
@@ -35,6 +52,9 @@ const store = createStore({
         },
         setAttributes(state, payload) {
             state.attributes = payload;
+        },
+        setCategoryItems(state, payload) {
+            state.categoryItems = payload;
         }
     }
 });
